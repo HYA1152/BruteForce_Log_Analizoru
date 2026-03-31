@@ -2,7 +2,7 @@ import os
 print("Siber Kalkan Devrede Loglar Taranıyor...")
 sabika_kaydi = {}
 
-with open("sunucu.log", "r") as dosya:
+with open("gercek_sunucu.log", "r", encoding="utf-8") as dosya:
     
     
     satirlar = dosya.readlines()
