@@ -1,12 +1,13 @@
+import os
 print("Siber Kalkan Devrede Loglar Taranıyor...")
 sabika_kaydi = {}
-# 'sunucu.log' dosyasını okumak için açıyoruz ('r' harfi read yani oku demek)
+
 with open("sunucu.log", "r") as dosya:
     
-    # Dosyanın içindeki tüm satırları okuyup 'satirlar' diye bir torbaya atıyoruz
+    
     satirlar = dosya.readlines()
 
-    # Torbadaki her bir satırı tek tek çıkarıp ekrana basıyoruz
+    
     for satir in satirlar:
        kelimeler = satir.split()
        ip_adresi = kelimeler[-1]
@@ -24,4 +25,8 @@ for ip, sayi in sabika_kaydi.items():
 
     if sayi > 2:
         print("TEHLİKE! Bu IP acilen yasaklanmalı:", ip, "-> Tam", sayi, "kere saldırdı!" ) 
+
+        komut = f'netsh advfirewall firewall add rule name="SiberKalkan_Ban_{ip}" dir=in action=block remoteip={ip}'
+        os.system(komut)
+        print(f"[-KİLİT-] {ip} Windows Güvenlik Duvarında Kkalıcı olarak BANLANDI!\n")
 
